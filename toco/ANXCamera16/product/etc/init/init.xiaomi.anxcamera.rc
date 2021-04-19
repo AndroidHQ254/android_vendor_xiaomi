@@ -1,0 +1,44 @@
+# Copyright (c) 2018 - 2019 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+
+
+on property:sys.user.0.ce_available=true
+
+    wait "/sdcard/.ANXCamera" 5
+
+    mkdir "/sdcard/.ANXCamera" 0775 root everybody 
+    mkdir "/sdcard/.ANXCamera/cheatcodes" 0775 root everybody 
+    mkdir "/sdcard/.ANXCamera/features" 0775 root everybody 
+    mkdir "/sdcard/.ANXCamera/fonts" 0775 root everybody 
+
+    copy "/system/etc/ANXCamera/cheatcodes/cheatcodes.json" "/sdcard/.ANXCamera/cheatcodes/cheatcodes.json"
+    copy "/system/etc/device_features/surya.xml" "/sdcard/.ANXCamera/features/surya.xml"
+    copy "/system/etc/device_features/karna.xml" "/sdcard/.ANXCamera/features/karna.xml"
+
+
+    copy "/system/etc/ANXCamera/fonts/MFYueYuan-Regular.ttf" "/sdcard/.ANXCamera/fonts/MFYueYuan-Regular.ttf"
+    copy "/system/etc/ANXCamera/fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf" "/sdcard/.ANXCamera/fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf"
+    copy "/system/etc/ANXCamera/fonts/MIUI_Time.ttf" "/sdcard/.ANXCamera/fonts/MIUI_Time.ttf"
+
+    chown root everybody "/sdcard/.ANXCamera/cheatcodes/cheatcodes.json"
+    chown root everybody "/sdcard/.ANXCamera/features/surya.xml"
+    chown root everybody "/sdcard/.ANXCamera/features/karna.xml"
+    
+    chmod 664 "/sdcard/.ANXCamera/cheatcodes/cheatcodes.json"
+    chmod 664 "/sdcard/.ANXCamera/features/surya.xml"
+    chmod 664 "/sdcard/.ANXCamera/features/karna.xml"
+
+    chmod 664 "/sdcard/.ANXCamera/fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf"
+    chmod 664 "/sdcard/.ANXCamera/fonts/MFYueYuan-Regular.ttf"
+    chmod 664 "/sdcard/.ANXCamera/fonts/MIUI_Time.ttf"
+
+    #start anx.helper
+
+#service anx.helper /product/bin/init.xiaomi.anxcamera.sh
+#    class late_start
+#    user root
+#    group root system radio
+#    oneshot
+#    disabled
+
